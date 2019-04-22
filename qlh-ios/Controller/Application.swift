@@ -11,6 +11,9 @@ import UIKit
 class Application {
     static var spinner = Spinner()
     static func initialize() {
-        spinner.initialize()
+        spinner.initialize(side: .spinnerSide,
+                           stepDuration: 0.7,
+                           colors: GradientColor.all,
+                           points: GradientPoint.all)
     }
 }

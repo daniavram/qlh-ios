@@ -11,36 +11,45 @@ import UIKit
 class Spinner: UIViewController {
     private(set) var parentObject: AnyObject?
     private(set) var container = UIView(frame: .init(origin: .zero, size: UIScreen.main.bounds.size))
+    private(set) var stepDuration: CFTimeInterval!
+    private(set) var colors: CircularList<GradientColor>!
+    private(set) var points: CircularList<GradientPoint>!
     private let gradient = CAGradientLayer()
     private let blurEffectView = UIVisualEffectView(frame: .init(origin: .zero, size: UIScreen.main.bounds.size))
 
-    func initialize() {
+    func initialize(side: CGFloat,
+                    stepDuration: CFTimeInterval,
+                    colors: CircularList<GradientColor>,
+                    points: CircularList<GradientPoint>) {
+        self.stepDuration = stepDuration
+        self.colors = colors
+        self.points = points
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         container.addSubview(blurEffectView)
-        let gradientContainer = UIView(frame: .init(origin: .zero, size: .square(of: .spinnerSide)))
-        gradient.frame = gradientContainer.bounds
-        gradient.colors = GradientColor.all.current?.value
-        gradient.drawsAsynchronously = true
+        let gradientContainer = UIView(frame: .init(origin: .zero, size: .square(of: side)))
         gradientContainer.layer.addSublayer(gradient)
         gradientContainer.clipsToBounds = true
-        gradientContainer.layer.cornerRadius = 0.5 * CGFloat.spinnerSide
-        container.addSubview(gradientContainer)
+        gradientContainer.layer.cornerRadius = 0.5 * side
         gradientContainer.center = container.center
+        container.addSubview(gradientContainer)
+        gradient.frame = gradientContainer.bounds
+        gradient.drawsAsynchronously = true
     }
 
     private func animate() {
+        gradient.colors = colors.current?.value
+        if let from = points.next?.from,
+            let to = points.next?.to {
+            // change gradient start / end points
+            gradient.endPoint = to
+            gradient.startPoint = from
+        }
         let gradientChangeAnimation = CABasicAnimation(keyPath: "colors")
         gradientChangeAnimation.delegate = self
-        gradientChangeAnimation.duration = 0.7
+        gradientChangeAnimation.duration = stepDuration
         gradientChangeAnimation.toValue = GradientColor.all.next?.value
         gradientChangeAnimation.fillMode = .forwards
         gradientChangeAnimation.isRemovedOnCompletion = false
-        if let from = GradientPoint.all.next?.from {
-            gradient.startPoint = from
-        }
-        if let to = GradientPoint.all.next?.to {
-            gradient.endPoint = to
-        }
         gradient.add(gradientChangeAnimation, forKey: "colorChange")
     }
 
@@ -61,7 +70,6 @@ class Spinner: UIViewController {
 extension Spinner: CAAnimationDelegate {
     func animationDidStop(_: CAAnimation, finished flag: Bool) {
         guard flag else { return }
-        gradient.colors = GradientColor.all.current?.value
         animate()
     }
 }
