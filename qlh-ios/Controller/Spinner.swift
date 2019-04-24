@@ -18,21 +18,23 @@ class Spinner: UIViewController, CAAnimationDelegate, AnimatableGradient {
     var pointTick: CGFloat = 0.3
 
     private(set) var parentObject: AnyObject?
-    private(set) var container = UIView(frame: .init(origin: .zero, size: UIScreen.main.bounds.size))
+    private(set) var container = UIView(frame: .zero)
     private let blurEffectView = UIVisualEffectView(frame: .init(origin: .zero, size: UIScreen.main.bounds.size))
 
-    func initialize(side: CGFloat,
+    func initialize(size: CGSize,
                     stepDuration: CFTimeInterval,
                     colors: CircularList<GradientColor>) {
         self.stepDuration = stepDuration
         self.colors = colors
+        container.translatesAutoresizingMaskIntoConstraints = false
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         container.addSubview(blurEffectView)
-        gradientContainer = UIView(frame: .init(origin: .zero, size: .square(of: side)))
+        gradientContainer = UIView(frame: .init(origin: .zero, size: size))
+        gradientContainer.translatesAutoresizingMaskIntoConstraints = false
         gradientContainer.clipsToBounds = true
-        gradientContainer.layer.cornerRadius = 0.5 * side
-        gradientContainer.center = container.center
-        container.addSubview(gradientContainer)
+        gradientContainer.layer.cornerRadius = 0.5 * size.height
+        gradientContainer.constraint(to: size)
+        container.addSubview(gradientContainer, withCenterOffset: .zero)
         gradient = CAGradientLayer()
         initializeGradient()
     }
@@ -41,7 +43,7 @@ class Spinner: UIViewController, CAAnimationDelegate, AnimatableGradient {
         guard parentObject == nil else { return }
         parentObject = parent
         blurEffectView.effect = UIBlurEffect(style: blurEffect)
-        UIApplication.shared.delegate?.window??.addSubview(container)
+        UIApplication.shared.delegate?.window??.addSubview(container, withPadding: .zero)
         animate()
     }
 

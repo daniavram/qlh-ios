@@ -8,6 +8,6 @@
 
 import UIKit
 
-extension CGFloat {
-    static var spinnerSide: CGFloat = 100
+extension CGSize {
+    static var spinner: CGSize = .square(of: 100)
 }

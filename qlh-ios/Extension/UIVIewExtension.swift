@@ -16,4 +16,15 @@ extension UIView {
         bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: padding.bottom).isActive = true
         trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: padding.right).isActive = true
     }
+
+    func addSubview(_ view: UIView, withCenterOffset offset: CGPoint) {
+        addSubview(view)
+        view.centerXAnchor.constraint(equalTo: centerXAnchor, constant: offset.x).isActive = true
+        view.centerYAnchor.constraint(equalTo: centerYAnchor, constant: offset.y).isActive = true
+    }
+
+    func constraint(to size: CGSize) {
+        widthAnchor.constraint(equalToConstant: size.width).isActive = true
+        heightAnchor.constraint(equalToConstant: size.height).isActive = true
+    }
 }
