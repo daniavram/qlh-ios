@@ -13,6 +13,7 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
     convenience init(color: UIColor) {
         self.init()
         tableView = UITableView(frame: view.frame, style: .grouped)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(ListCell.self, forCellReuseIdentifier: ListCell.identifier)
@@ -21,8 +22,7 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.sectionFooterHeight = .leastNonzeroMagnitude
         tableView.separatorStyle = .none
         tableView.backgroundColor = color
-        tableView.contentInset = .pairs(vertical: 12, horizontal: 0)
-        view.addSubview(tableView)
+        view.addSubview(tableView, withPadding: .zero)
     }
 
     func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {

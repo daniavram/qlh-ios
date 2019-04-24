@@ -48,7 +48,7 @@ class ListCell: UITableViewCell {
 extension ListCell {
     struct Props {
         var cornerRadius: CGFloat = 8
-        var insets: UIEdgeInsets = .init(top: 0, left: 6, bottom: 12, right: 6)
+        var insets: UIEdgeInsets = .init(top: 12, left: 6, bottom: 0, right: 6)
         var backgroundColor: UIColor = .white
         var highlightColor: UIColor = UIColor.gray.lighten(by: 70)
     }

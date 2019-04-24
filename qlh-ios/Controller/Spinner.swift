@@ -47,7 +47,7 @@ class Spinner: UIViewController {
         let gradientChangeAnimation = CABasicAnimation(keyPath: "colors")
         gradientChangeAnimation.delegate = self
         gradientChangeAnimation.duration = stepDuration
-        gradientChangeAnimation.toValue = GradientColor.all.next?.value
+        gradientChangeAnimation.toValue = colors.next?.value
         gradientChangeAnimation.fillMode = .forwards
         gradientChangeAnimation.isRemovedOnCompletion = false
         gradient.add(gradientChangeAnimation, forKey: "colorChange")
