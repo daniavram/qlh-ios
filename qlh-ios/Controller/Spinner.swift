@@ -15,7 +15,7 @@ class Spinner: UIViewController, CAAnimationDelegate, AnimatableGradient {
     var stepDuration: CFTimeInterval!
     var colors: CircularList<GradientColor>!
     var currentPoint: GradientPoint = .top
-    var pointTick: CGFloat = 0.3
+    var pointTick: CGFloat = 0.35
 
     private(set) var parentObject: AnyObject?
     private(set) var container = UIView(frame: .zero)

@@ -27,6 +27,7 @@
 		8E95254C226314200076E0B2 /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E95254B226314200076E0B2 /* ListCell.swift */; };
 		8E95254E226339190076E0B2 /* UIVIewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E95254D226339190076E0B2 /* UIVIewExtension.swift */; };
 		8E95255022633A930076E0B2 /* UIEdgeInsetsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E95254F22633A930076E0B2 /* UIEdgeInsetsExtension.swift */; };
+		8EEFCEC72270BA4E004105F3 /* CGPointExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEFCEC62270BA4E004105F3 /* CGPointExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		8E95254B226314200076E0B2 /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		8E95254D226339190076E0B2 /* UIVIewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIVIewExtension.swift; sourceTree = "<group>"; };
 		8E95254F22633A930076E0B2 /* UIEdgeInsetsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIEdgeInsetsExtension.swift; sourceTree = "<group>"; };
+		8EEFCEC62270BA4E004105F3 /* CGPointExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPointExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +143,7 @@
 				8E738B62226B832B008EF3D6 /* ArrayExtension.swift */,
 				8E95254F22633A930076E0B2 /* UIEdgeInsetsExtension.swift */,
 				8E95254D226339190076E0B2 /* UIVIewExtension.swift */,
+				8EEFCEC62270BA4E004105F3 /* CGPointExtension.swift */,
 				8E10A91122623C4500ACBBC9 /* CGSizeExtension.swift */,
 				8E738B60226B809D008EF3D6 /* CircularList.swift */,
 			);
@@ -244,6 +247,7 @@
 				8E10A91222623C4500ACBBC9 /* CGSizeExtension.swift in Sources */,
 				8E738B65226B8548008EF3D6 /* GradientPoint.swift in Sources */,
 				8E10A9032262312000ACBBC9 /* Spinner.swift in Sources */,
+				8EEFCEC72270BA4E004105F3 /* CGPointExtension.swift in Sources */,
 				8E738B61226B809D008EF3D6 /* CircularList.swift in Sources */,
 				8E95254E226339190076E0B2 /* UIVIewExtension.swift in Sources */,
 				8E95255022633A930076E0B2 /* UIEdgeInsetsExtension.swift in Sources */,
