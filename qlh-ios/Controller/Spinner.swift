@@ -10,10 +10,10 @@ import UIKit
 
 class Spinner: UIViewController, CAAnimationDelegate, AnimatableGradient {
     var isLoopable: Bool = true
-    var gradient: CAGradientLayer!
+    var gradient: CAGradientLayer = CAGradientLayer()
     var gradientContainer: UIView!
-    var stepDuration: CFTimeInterval!
-    var colors: CircularList<GradientColor>!
+    var stepDuration: CFTimeInterval = 0
+    var colors: CircularList<GradientColor> = .init(elements: [])
     var currentPoint: GradientPoint = .top
     var pointTick: CGFloat = 0.35
 
@@ -35,7 +35,6 @@ class Spinner: UIViewController, CAAnimationDelegate, AnimatableGradient {
         gradientContainer.layer.cornerRadius = 0.5 * size.height
         _ = gradientContainer.constraint(to: size)
         _ = container.addSubview(gradientContainer, withCenterOffset: .zero)
-        gradient = CAGradientLayer()
         initializeGradient()
     }
 

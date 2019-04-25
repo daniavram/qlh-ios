@@ -10,10 +10,10 @@ import UIKit
 
 class ListController: UIViewController, UITableViewDelegate, UITableViewDataSource, CAAnimationDelegate, AnimatableGradient {
     var isLoopable: Bool = true
-    var gradient: CAGradientLayer!
+    var gradient: CAGradientLayer = CAGradientLayer()
     var gradientContainer: UIView!
-    var stepDuration: CFTimeInterval! = 6
-    var colors: CircularList<GradientColor>! = GradientColor.allForList
+    var stepDuration: CFTimeInterval = 6
+    var colors: CircularList<GradientColor> = GradientColor.allForList
     var currentPoint: GradientPoint = .bottom
     var pointTick: CGFloat = 0
 
@@ -33,7 +33,6 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.backgroundColor = color
         tableView.backgroundView = UIView()
         _ = view.addSubview(tableView, withPadding: .zero)
-        gradient = CAGradientLayer()
         gradientContainer = UIView(frame: view.frame)
         gradientContainer.translatesAutoresizingMaskIntoConstraints = false
         _ = tableView.backgroundView?.addSubview(gradientContainer, withPadding: .zero)

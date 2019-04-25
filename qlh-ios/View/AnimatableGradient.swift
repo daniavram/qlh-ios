@@ -10,10 +10,10 @@ import UIKit
 
 protocol AnimatableGradient: class {
     var isLoopable: Bool { get set }
-    var gradient: CAGradientLayer! { get }
+    var gradient: CAGradientLayer { get }
     var gradientContainer: UIView! { get }
-    var stepDuration: CFTimeInterval! { get }
-    var colors: CircularList<GradientColor>! { get }
+    var stepDuration: CFTimeInterval { get }
+    var colors: CircularList<GradientColor> { get }
     var currentPoint: GradientPoint { get set }
     var pointTick: CGFloat { get }
     func initializeGradient()
