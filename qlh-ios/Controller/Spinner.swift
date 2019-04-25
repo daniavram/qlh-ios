@@ -33,8 +33,8 @@ class Spinner: UIViewController, CAAnimationDelegate, AnimatableGradient {
         gradientContainer.translatesAutoresizingMaskIntoConstraints = false
         gradientContainer.clipsToBounds = true
         gradientContainer.layer.cornerRadius = 0.5 * size.height
-        gradientContainer.constraint(to: size)
-        container.addSubview(gradientContainer, withCenterOffset: .zero)
+        _ = gradientContainer.constraint(to: size)
+        _ = container.addSubview(gradientContainer, withCenterOffset: .zero)
         gradient = CAGradientLayer()
         initializeGradient()
     }
@@ -43,7 +43,7 @@ class Spinner: UIViewController, CAAnimationDelegate, AnimatableGradient {
         guard parentObject == nil else { return }
         parentObject = parent
         blurEffectView.effect = UIBlurEffect(style: blurEffect)
-        UIApplication.shared.delegate?.window??.addSubview(container, withPadding: .zero)
+        _ = UIApplication.shared.delegate?.window??.addSubview(container, withPadding: .zero)
         animate()
     }
 

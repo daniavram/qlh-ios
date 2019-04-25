@@ -10,8 +10,13 @@ import UIKit
 
 class ListCell: UITableViewCell {
     static let identifier = String(describing: ListCell.self)
+    private var anchors: UIView.Anchors!
     private var container: UIView!
-    var props: Props = Props()
+    var props: Props = Props() {
+        didSet {
+            updatePaddings()
+        }
+    }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -30,7 +35,11 @@ class ListCell: UITableViewCell {
         container.backgroundColor = props.backgroundColor
         container.clipsToBounds = true
         container.layer.cornerRadius = props.cornerRadius
-        contentView.addSubview(container, withPadding: props.insets)
+        anchors = contentView.addSubview(container, withPadding: props.insets)
+    }
+
+    private func updatePaddings() {
+        anchors.setConstants(to: props.insets)
     }
 
     override func setSelected(_: Bool, animated _: Bool) {
@@ -48,7 +57,7 @@ class ListCell: UITableViewCell {
 extension ListCell {
     struct Props {
         var cornerRadius: CGFloat = 8
-        var insets: UIEdgeInsets = .init(top: 12, left: 6, bottom: 0, right: 6)
+        var insets: UIEdgeInsets = .all(with: 6)
         var backgroundColor: UIColor = .white
         var highlightColor: UIColor = UIColor.gray.lighten(by: 70)
     }

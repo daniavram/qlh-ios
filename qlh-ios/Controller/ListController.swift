@@ -32,11 +32,11 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.separatorStyle = .none
         tableView.backgroundColor = color
         tableView.backgroundView = UIView()
-        view.addSubview(tableView, withPadding: .zero)
+        _ = view.addSubview(tableView, withPadding: .zero)
         gradient = CAGradientLayer()
         gradientContainer = UIView(frame: view.frame)
         gradientContainer.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundView?.addSubview(gradientContainer, withPadding: .zero)
+        _ = tableView.backgroundView?.addSubview(gradientContainer, withPadding: .zero)
         initializeGradient()
     }
 
@@ -54,8 +54,12 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return 10
     }
 
-    func tableView(_: UITableView, cellForRowAt _: IndexPath) -> UITableViewCell {
-        return ListCell()
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ListCell.identifier,
+                                                       for: indexPath) as? ListCell else { return UITableViewCell() }
+        cell.props.insets.top = indexPath.row == 0 ? 12 : 6
+        cell.props.insets.bottom = indexPath.row == 9 ? 12 : 6
+        return cell
     }
 
     func tableView(_: UITableView, heightForHeaderInSection _: Int) -> CGFloat {
