@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ListController: UIViewController, UITableViewDelegate, UITableViewDataSource, CAAnimationDelegate, AnimatableGradient {
+class ListController: UIViewController, UITableViewDelegate, UITableViewDataSource, CAAnimationDelegate, AnimatableGradient, UIActivityIndicatable {
     var isLoopable: Bool = true
     var gradient: CAGradientLayer = CAGradientLayer()
     var gradientContainer: UIView!
@@ -18,6 +18,9 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var pointTick: CGFloat = 0
 
     private var tableView: UITableView!
+    private var provider: ListItemsProvider<ListController>!
+
+    private(set) var items = [ListItem]()
 
     convenience init(color: UIColor) {
         self.init()
@@ -37,6 +40,8 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
         gradientContainer.translatesAutoresizingMaskIntoConstraints = false
         _ = tableView.backgroundView?.addSubview(gradientContainer, withPadding: .zero)
         initializeGradient()
+        provider = ListItemsProvider(delegate: self)
+        provider.fetch()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -50,14 +55,14 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-        return 10
+        return items.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ListCell.identifier,
                                                        for: indexPath) as? ListCell else { return UITableViewCell() }
-        cell.props.insets.top = indexPath.row == 0 ? 12 : 6
-        cell.props.insets.bottom = indexPath.row == 9 ? 12 : 6
+        cell.props.insets.top = items.isFirst(index: indexPath.row) ? 12 : 6
+        cell.props.insets.bottom = items.isLast(index: indexPath.row) ? 12 : 6
         return cell
     }
 
@@ -77,5 +82,12 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
         guard isLoopable, flag else { return }
         currentPoint = currentPoint == .bottom ? .top : .bottom
         animate()
+    }
+}
+
+extension ListController: ListItemsDelegate {
+    func didFetch(_ elements: [ListItem]) {
+        items = elements
+        tableView.reloadData()
     }
 }

@@ -48,6 +48,7 @@ class Spinner: UIViewController, CAAnimationDelegate, AnimatableGradient {
 
     func stop(from parent: AnyObject) {
         guard parentObject?.isEqual(parent) == true else { return }
+        parentObject = nil
         container.removeFromSuperview()
     }
 
