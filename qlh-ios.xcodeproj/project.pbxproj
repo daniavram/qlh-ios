@@ -20,6 +20,11 @@
 		8E10A91422623D6600ACBBC9 /* Numbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E10A91322623D6600ACBBC9 /* Numbers.swift */; };
 		8E10A9162262720900ACBBC9 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E10A9152262720900ACBBC9 /* Application.swift */; };
 		8E1C7D6622706C73009DA413 /* AnimatableGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1C7D6522706C73009DA413 /* AnimatableGradient.swift */; };
+		8E52B5DA22721EC800DEFEDE /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E52B5D922721EC800DEFEDE /* Course.swift */; };
+		8E52B5DC22721ED100DEFEDE /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E52B5DB22721ED100DEFEDE /* Menu.swift */; };
+		8E52B5DE227223EF00DEFEDE /* JSONDecoderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E52B5DD227223EF00DEFEDE /* JSONDecoderExtension.swift */; };
+		8E52B5E122722DE500DEFEDE /* TheInternet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E52B5E022722DE500DEFEDE /* TheInternet.swift */; };
+		8E52B5E3227257C700DEFEDE /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E52B5E2227257C700DEFEDE /* IntExtension.swift */; };
 		8E738B61226B809D008EF3D6 /* CircularList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E738B60226B809D008EF3D6 /* CircularList.swift */; };
 		8E738B63226B832B008EF3D6 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E738B62226B832B008EF3D6 /* ArrayExtension.swift */; };
 		8E738B65226B8548008EF3D6 /* GradientPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E738B64226B8548008EF3D6 /* GradientPoint.swift */; };
@@ -51,6 +56,11 @@
 		8E10A91322623D6600ACBBC9 /* Numbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numbers.swift; sourceTree = "<group>"; };
 		8E10A9152262720900ACBBC9 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		8E1C7D6522706C73009DA413 /* AnimatableGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatableGradient.swift; sourceTree = "<group>"; };
+		8E52B5D922721EC800DEFEDE /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
+		8E52B5DB22721ED100DEFEDE /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
+		8E52B5DD227223EF00DEFEDE /* JSONDecoderExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoderExtension.swift; sourceTree = "<group>"; };
+		8E52B5E022722DE500DEFEDE /* TheInternet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheInternet.swift; sourceTree = "<group>"; };
+		8E52B5E2227257C700DEFEDE /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
 		8E738B60226B809D008EF3D6 /* CircularList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularList.swift; sourceTree = "<group>"; };
 		8E738B62226B832B008EF3D6 /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		8E738B64226B8548008EF3D6 /* GradientPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientPoint.swift; sourceTree = "<group>"; };
@@ -101,6 +111,7 @@
 				8E10A9052262313B00ACBBC9 /* View */,
 				8E10A9062262313D00ACBBC9 /* Controller */,
 				8EEFCECD2271C6DA004105F3 /* Provider */,
+				8E52B5DF22722DD500DEFEDE /* Manager */,
 				8E10A90E226235BE00ACBBC9 /* Constants */,
 				8EEFCEC82271C5F7004105F3 /* Protocols */,
 				8E10A908226232ED00ACBBC9 /* Extension */,
@@ -151,13 +162,14 @@
 		8E10A908226232ED00ACBBC9 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				8E10A9092262330900ACBBC9 /* UIColorExtension.swift */,
 				8E738B62226B832B008EF3D6 /* ArrayExtension.swift */,
-				8E95254F22633A930076E0B2 /* UIEdgeInsetsExtension.swift */,
-				8E95254D226339190076E0B2 /* UIVIewExtension.swift */,
+				8E52B5DD227223EF00DEFEDE /* JSONDecoderExtension.swift */,
+				8E52B5E2227257C700DEFEDE /* IntExtension.swift */,
 				8EEFCEC62270BA4E004105F3 /* CGPointExtension.swift */,
 				8E10A91122623C4500ACBBC9 /* CGSizeExtension.swift */,
-				8E738B60226B809D008EF3D6 /* CircularList.swift */,
+				8E10A9092262330900ACBBC9 /* UIColorExtension.swift */,
+				8E95254F22633A930076E0B2 /* UIEdgeInsetsExtension.swift */,
+				8E95254D226339190076E0B2 /* UIVIewExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -165,9 +177,12 @@
 		8E10A90B2262349100ACBBC9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8E738B60226B809D008EF3D6 /* CircularList.swift */,
 				8E10A90C226234A100ACBBC9 /* GradientColor.swift */,
 				8E738B64226B8548008EF3D6 /* GradientPoint.swift */,
 				8EEFCED22271C722004105F3 /* ListItem.swift */,
+				8E52B5D922721EC800DEFEDE /* Course.swift */,
+				8E52B5DB22721ED100DEFEDE /* Menu.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -179,6 +194,14 @@
 				8E10A91322623D6600ACBBC9 /* Numbers.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		8E52B5DF22722DD500DEFEDE /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				8E52B5E022722DE500DEFEDE /* TheInternet.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		8EEFCEC82271C5F7004105F3 /* Protocols */ = {
@@ -270,20 +293,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E52B5DA22721EC800DEFEDE /* Course.swift in Sources */,
 				8E738B63226B832B008EF3D6 /* ArrayExtension.swift in Sources */,
 				8EEFCED32271C722004105F3 /* ListItem.swift in Sources */,
 				8EEFCED12271C716004105F3 /* ListItemsDelegate.swift in Sources */,
 				8E10A9162262720900ACBBC9 /* Application.swift in Sources */,
+				8E52B5E122722DE500DEFEDE /* TheInternet.swift in Sources */,
 				8E95254A22630EAC0076E0B2 /* ListController.swift in Sources */,
 				8E10A8EF22622BA900ACBBC9 /* LaunchController.swift in Sources */,
 				8E10A910226235D000ACBBC9 /* Colors.swift in Sources */,
+				8E52B5E3227257C700DEFEDE /* IntExtension.swift in Sources */,
 				8EEFCECC2271C61D004105F3 /* UIActivityIndicatable.swift in Sources */,
 				8E10A91222623C4500ACBBC9 /* CGSizeExtension.swift in Sources */,
 				8E738B65226B8548008EF3D6 /* GradientPoint.swift in Sources */,
 				8E10A9032262312000ACBBC9 /* Spinner.swift in Sources */,
 				8EEFCECA2271C612004105F3 /* Fetcher.swift in Sources */,
 				8EEFCEC72270BA4E004105F3 /* CGPointExtension.swift in Sources */,
+				8E52B5DC22721ED100DEFEDE /* Menu.swift in Sources */,
 				8E738B61226B809D008EF3D6 /* CircularList.swift in Sources */,
+				8E52B5DE227223EF00DEFEDE /* JSONDecoderExtension.swift in Sources */,
 				8E95254E226339190076E0B2 /* UIVIewExtension.swift in Sources */,
 				8EEFCECF2271C6FD004105F3 /* ListItemsProvider.swift in Sources */,
 				8E95255022633A930076E0B2 /* UIEdgeInsetsExtension.swift in Sources */,

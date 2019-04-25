@@ -18,18 +18,15 @@ class ListItemsProvider<T: ListItemsDelegate> {
     func fetch() {
         delegate?.didStartFetch()
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
+        TheInternet().makeRequest(.get, endpoint: .orders("dani", 13)) { data, _, _ in
             self.delegate?.didEndFetch()
 
-            let stubs: [ListItem] = [
-                ListItem(),
-                ListItem(),
-                ListItem(),
-                ListItem(),
-                ListItem(),
-            ]
+            if let data = data {
+                let dict = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+                debugPrint(dict)
+            }
 
-            self.delegate?.didFetch(stubs)
+            self.delegate?.didFetch([])
         }
     }
 }

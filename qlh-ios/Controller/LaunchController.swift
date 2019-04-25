@@ -11,12 +11,8 @@ import UIKit
 class LaunchController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        Application.spinner.start(from: self)
         let list = ListController(color: .listGradient1)
         let navigation = UINavigationController(rootViewController: list)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-            Application.spinner.stop(from: self)
-            self.present(navigation, animated: true, completion: nil)
-        }
+        present(navigation, animated: true, completion: nil)
     }
 }
