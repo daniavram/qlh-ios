@@ -18,7 +18,7 @@ class ListItemsProvider<T: ListItemsDelegate> {
     func fetch() {
         delegate?.didStartFetch()
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
             self.delegate?.didEndFetch()
 
             let stubs: [ListItem] = [

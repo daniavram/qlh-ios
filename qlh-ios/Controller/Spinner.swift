@@ -39,11 +39,12 @@ class Spinner: UIViewController, CAAnimationDelegate, AnimatableGradient {
     }
 
     func start(from parent: AnyObject, blurEffect: UIBlurEffect.Style = .dark) {
-        guard parentObject == nil else { return }
+        if parentObject == nil {
+            blurEffectView.effect = UIBlurEffect(style: blurEffect)
+            _ = UIApplication.shared.delegate?.window??.addSubview(container, withPadding: .zero)
+            animate()
+        }
         parentObject = parent
-        blurEffectView.effect = UIBlurEffect(style: blurEffect)
-        _ = UIApplication.shared.delegate?.window??.addSubview(container, withPadding: .zero)
-        animate()
     }
 
     func stop(from parent: AnyObject) {
