@@ -39,4 +39,11 @@ struct GradientPoint {
     }
 
     static var top: GradientPoint = .init(from: .init(x: 0.5, y: 0))
+    static var bottom: GradientPoint = .init(from: .init(x: 0.5, y: 1))
+
+    static func == (lhs: GradientPoint, rhs: GradientPoint) -> Bool {
+        let fromEq = lhs.from.x == rhs.from.x && lhs.from.y == rhs.from.y
+        let toEq = lhs.to.x == rhs.to.x && lhs.to.y == rhs.to.y
+        return fromEq && toEq
+    }
 }

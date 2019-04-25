@@ -8,8 +8,17 @@
 
 import UIKit
 
-class ListController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ListController: UIViewController, UITableViewDelegate, UITableViewDataSource, CAAnimationDelegate, AnimatableGradient {
+    var isLoopable: Bool = true
+    var gradient: CAGradientLayer!
+    var gradientContainer: UIView!
+    var stepDuration: CFTimeInterval! = 6
+    var colors: CircularList<GradientColor>! = GradientColor.allForList
+    var currentPoint: GradientPoint = .bottom
+    var pointTick: CGFloat = 0
+
     private var tableView: UITableView!
+
     convenience init(color: UIColor) {
         self.init()
         tableView = UITableView(frame: view.frame, style: .grouped)
@@ -22,7 +31,23 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.sectionFooterHeight = .leastNonzeroMagnitude
         tableView.separatorStyle = .none
         tableView.backgroundColor = color
+        tableView.backgroundView = UIView()
         view.addSubview(tableView, withPadding: .zero)
+        gradient = CAGradientLayer()
+        gradientContainer = UIView(frame: view.frame)
+        gradientContainer.translatesAutoresizingMaskIntoConstraints = false
+        tableView.backgroundView?.addSubview(gradientContainer, withPadding: .zero)
+        initializeGradient()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        animate()
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        updateGradient(size: size)
     }
 
     func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
@@ -40,8 +65,14 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_: UITableView, heightForFooterInSection _: Int) -> CGFloat {
         return .leastNonzeroMagnitude
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+
+    func animationDidStop(_: CAAnimation, finished flag: Bool) {
+        guard isLoopable, flag else { return }
+        currentPoint = currentPoint == .bottom ? .top : .bottom
+        animate()
     }
 }

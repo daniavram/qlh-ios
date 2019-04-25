@@ -13,6 +13,6 @@ class Application {
     static func initialize() {
         spinner.initialize(size: .spinner,
                            stepDuration: 0.7,
-                           colors: GradientColor.all)
+                           colors: GradientColor.allForSpinner)
     }
 }

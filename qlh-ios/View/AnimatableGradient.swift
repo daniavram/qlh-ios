@@ -17,14 +17,20 @@ protocol AnimatableGradient: class {
     var currentPoint: GradientPoint { get set }
     var pointTick: CGFloat { get }
     func initializeGradient()
+    func updateGradient(size: CGSize)
     func animate()
 }
 
 extension AnimatableGradient where Self: UIViewController & CAAnimationDelegate {
     func initializeGradient() {
         gradientContainer.layer.addSublayer(gradient)
-        gradient.frame = gradientContainer.bounds
         gradient.drawsAsynchronously = true
+        updateGradient(size: gradientContainer.bounds.size)
+    }
+
+    func updateGradient(size: CGSize) {
+        gradient.frame.origin = gradientContainer.bounds.origin
+        gradient.frame.size = size
     }
 
     func animate() {
