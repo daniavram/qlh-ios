@@ -12,9 +12,23 @@ class ListCell: UITableViewCell {
     static let identifier = String(describing: ListCell.self)
     private var anchors: UIView.Anchors!
     private var container: UIView!
+    private var vStack: UIStackView!
+    private var hStack: UIStackView!
+    private var titleLabel: UILabel!
+    private var priceLabel: UILabel!
+    private var subtitleLabel: UILabel!
+
     var props: Props = Props() {
         didSet {
             updatePaddings()
+        }
+    }
+
+    var viewModel: ListViewModel? {
+        didSet {
+            titleLabel.text = viewModel?.props.title
+            priceLabel.text = viewModel?.props.price
+            subtitleLabel.text = viewModel?.props.subtitle
         }
     }
 
@@ -36,6 +50,24 @@ class ListCell: UITableViewCell {
         container.clipsToBounds = true
         container.layer.cornerRadius = props.cornerRadius
         anchors = contentView.addSubview(container, withPadding: props.insets)
+        hStack = UIStackView(frame: .zero)
+        hStack.translatesAutoresizingMaskIntoConstraints = false
+        hStack.axis = .horizontal
+        vStack = UIStackView(frame: .zero)
+        vStack.translatesAutoresizingMaskIntoConstraints = false
+        vStack.axis = .vertical
+        titleLabel = UILabel(frame: .zero)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        priceLabel = UILabel(frame: .zero)
+        priceLabel.translatesAutoresizingMaskIntoConstraints = false
+        subtitleLabel = UILabel(frame: .zero)
+        subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        subtitleLabel.numberOfLines = 0
+        hStack.addArrangedSubview(titleLabel)
+        hStack.addArrangedSubview(priceLabel)
+        vStack.addArrangedSubview(hStack)
+        vStack.addArrangedSubview(subtitleLabel)
+        _ = container.addSubview(vStack, withPadding: .all(with: 8))
     }
 
     private func updatePaddings() {

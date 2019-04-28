@@ -25,6 +25,7 @@
 		8E52B5DE227223EF00DEFEDE /* JSONDecoderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E52B5DD227223EF00DEFEDE /* JSONDecoderExtension.swift */; };
 		8E52B5E122722DE500DEFEDE /* TheInternet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E52B5E022722DE500DEFEDE /* TheInternet.swift */; };
 		8E52B5E3227257C700DEFEDE /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E52B5E2227257C700DEFEDE /* IntExtension.swift */; };
+		8E62A8C122765A410079C3D1 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E62A8C022765A410079C3D1 /* ListViewModel.swift */; };
 		8E738B61226B809D008EF3D6 /* CircularList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E738B60226B809D008EF3D6 /* CircularList.swift */; };
 		8E738B63226B832B008EF3D6 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E738B62226B832B008EF3D6 /* ArrayExtension.swift */; };
 		8E738B65226B8548008EF3D6 /* GradientPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E738B64226B8548008EF3D6 /* GradientPoint.swift */; };
@@ -61,6 +62,7 @@
 		8E52B5DD227223EF00DEFEDE /* JSONDecoderExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoderExtension.swift; sourceTree = "<group>"; };
 		8E52B5E022722DE500DEFEDE /* TheInternet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheInternet.swift; sourceTree = "<group>"; };
 		8E52B5E2227257C700DEFEDE /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
+		8E62A8C022765A410079C3D1 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		8E738B60226B809D008EF3D6 /* CircularList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularList.swift; sourceTree = "<group>"; };
 		8E738B62226B832B008EF3D6 /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		8E738B64226B8548008EF3D6 /* GradientPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientPoint.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				8E10A90022622E5200ACBBC9 /* Launch.storyboard */,
 				8E1C7D6522706C73009DA413 /* AnimatableGradient.swift */,
 				8E95254B226314200076E0B2 /* ListCell.swift */,
+				8E62A8C022765A410079C3D1 /* ListViewModel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				8EEFCED12271C716004105F3 /* ListItemsDelegate.swift in Sources */,
 				8E10A9162262720900ACBBC9 /* Application.swift in Sources */,
 				8E52B5E122722DE500DEFEDE /* TheInternet.swift in Sources */,
+				8E62A8C122765A410079C3D1 /* ListViewModel.swift in Sources */,
 				8E95254A22630EAC0076E0B2 /* ListController.swift in Sources */,
 				8E10A8EF22622BA900ACBBC9 /* LaunchController.swift in Sources */,
 				8E10A910226235D000ACBBC9 /* Colors.swift in Sources */,

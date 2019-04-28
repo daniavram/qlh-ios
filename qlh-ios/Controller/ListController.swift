@@ -29,7 +29,7 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(ListCell.self, forCellReuseIdentifier: ListCell.identifier)
-        tableView.rowHeight = 80
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.sectionHeaderHeight = .leastNonzeroMagnitude
         tableView.sectionFooterHeight = .leastNonzeroMagnitude
         tableView.separatorStyle = .none
@@ -63,6 +63,7 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
                                                        for: indexPath) as? ListCell else { return UITableViewCell() }
         cell.props.insets.top = items.isFirst(index: indexPath.row) ? 12 : 6
         cell.props.insets.bottom = items.isLast(index: indexPath.row) ? 12 : 6
+        cell.viewModel = items.element(at: indexPath.row)
         return cell
     }
 
