@@ -20,7 +20,9 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
     private var tableView: UITableView!
     private var provider: ListItemsProvider<ListController>!
 
-    private(set) var items = [ListItem]()
+    private(set) var itemsCollection = ListItemCollection()
+
+    var selectedDay: Day = .tuesday
 
     convenience init(color: UIColor) {
         self.init()
@@ -55,12 +57,14 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
+        let items = itemsCollection[selectedDay]
         return items.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ListCell.identifier,
                                                        for: indexPath) as? ListCell else { return UITableViewCell() }
+        let items = itemsCollection[selectedDay]
         cell.props.insets.top = items.isFirst(index: indexPath.row) ? 12 : 6
         cell.props.insets.bottom = items.isLast(index: indexPath.row) ? 12 : 6
         cell.viewModel = items.element(at: indexPath.row)
@@ -87,8 +91,8 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
 }
 
 extension ListController: ListItemsDelegate {
-    func didFetch(_ elements: [ListItem]) {
-        items = elements
+    func didFetch(_ elements: ListItemCollection) {
+        itemsCollection = elements
         tableView.reloadData()
     }
 }

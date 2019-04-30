@@ -8,4 +8,4 @@
 
 import Foundation
 
-protocol ListItemsDelegate: Fetcher where Element == ListItem {}
+protocol ListItemsDelegate: Fetcher where FetchedType == ListItemCollection {}

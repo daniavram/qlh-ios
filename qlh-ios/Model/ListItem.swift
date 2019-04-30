@@ -8,13 +8,15 @@
 
 import Foundation
 
-class ListItem: Fetchable, Codable, ListViewModel {
+class ListItem: Codable, ListViewModel, Comparable {
     var course: Course?
     var menu: Menu?
 
-    init() {
-        course = Course()
-        menu = Menu()
+    init?(jsonValue: Any) {
+        let dictData = try? JSONSerialization.data(withJSONObject: jsonValue, options: [])
+        let item = decoded(from: dictData)
+        course = item?.course
+        menu = item?.menu
     }
 
     var props: ListViewProps {
@@ -22,5 +24,15 @@ class ListItem: Fetchable, Codable, ListViewModel {
                                   price: course?.price,
                                   subtitle: course?.name)
         return props
+    }
+
+    static func < (lhs: ListItem, rhs: ListItem) -> Bool {
+        guard let lhsMenuId = lhs.menu?.id, let rhsMenuId = rhs.menu?.id else { return false }
+        return lhsMenuId < rhsMenuId
+    }
+
+    static func == (lhs: ListItem, rhs: ListItem) -> Bool {
+        guard let lhsMenuId = lhs.menu?.id, let rhsMenuId = rhs.menu?.id else { return false }
+        return lhsMenuId == rhsMenuId
     }
 }

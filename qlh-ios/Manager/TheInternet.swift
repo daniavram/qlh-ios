@@ -16,9 +16,11 @@ class TheInternet {
         session = URLSession(configuration: .default)
     }
 
-    func makeRequest(_: RequestType, endpoint: Endpoint, completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
+    func makeRequest(_ requestType: RequestType, endpoint: Endpoint, completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
         onCompletion = completion
-        let request = URLRequest(url: endpoint.url)
+        var request = URLRequest(url: endpoint.url)
+        request.httpMethod = requestType.rawValue
+        request.httpBody = requestType.payload
         session.dataTask(with: request, completionHandler: onFinished(data:response:error:)).resume()
     }
 
@@ -32,6 +34,22 @@ class TheInternet {
 enum RequestType {
     case get
     case post(Codable)
+
+    var rawValue: String {
+        switch self {
+        case .get: return "GET"
+        case .post: return "POST"
+        }
+    }
+
+    var payload: Data? {
+        switch self {
+        case .get:
+            return nil
+        case let .post(object):
+            return object.data()
+        }
+    }
 }
 
 enum Endpoint {

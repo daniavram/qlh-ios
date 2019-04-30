@@ -9,10 +9,10 @@
 import Foundation
 
 protocol Fetcher: class {
-    associatedtype Element: Fetchable
+    associatedtype FetchedType: Fetchable
     func didStartFetch()
     func didEndFetch()
-    func didFetch(_ elements: [Element])
+    func didFetch(_ elements: FetchedType)
 }
 
 protocol Fetchable {}
