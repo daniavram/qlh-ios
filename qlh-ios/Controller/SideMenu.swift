@@ -9,10 +9,16 @@
 import UIKit
 
 class SideMenu: UIViewController {
-    private var menuButton: UIView!
+    private var menuButton: MenuButton!
     private var overlayView: UIView!
     private var container: UIView!
 
+    /// Spacing between button and screen; top and right don't matter
+    private let menuButtonSpacing = UIEdgeInsets(top: 0, left: 11, bottom: 11, right: 0)
+    /// Menu button size
+    private let menuButtonSize = CGSize(width: 44, height: 44)
+    /// Height of the menu container
+    private let menuHeight: CGFloat = 400
     /// Menu button bottom constraint
     private var bottomConstraint = NSLayoutConstraint()
     /// The current state of the animation. This variable is changed only when an animation completes.
@@ -43,24 +49,20 @@ class SideMenu: UIViewController {
         overlayView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         overlayView.alpha = 0
         _ = window.addSubview(overlayView, withPadding: .zero)
-        menuButton = UIView(frame: .zero)
-        menuButton.translatesAutoresizingMaskIntoConstraints = false
-        menuButton.backgroundColor = .red
-        menuButton.layer.cornerRadius = 22
-        _ = menuButton.constraint(to: .square(of: 44))
+        menuButton = MenuButton(size: menuButtonSize)
         window.addSubview(menuButton)
-        menuButton.leadingAnchor.constraint(equalTo: window.leadingAnchor, constant: 22).isActive = true
-        bottomConstraint = window.bottomAnchor.constraint(equalTo: menuButton.bottomAnchor, constant: 22)
+        menuButton.leadingAnchor.constraint(equalTo: window.leadingAnchor, constant: 11).isActive = true
+        bottomConstraint = window.bottomAnchor.constraint(equalTo: menuButton.bottomAnchor, constant: 11)
         bottomConstraint.isActive = true
         container = UIView(frame: .zero)
         container.translatesAutoresizingMaskIntoConstraints = false
         container.backgroundColor = .white
-        container.layer.cornerRadius = 22
+        container.layer.cornerRadius = 0.35 * menuButtonSize.height
         window.addSubview(container)
         container.leadingAnchor.constraint(equalTo: window.leadingAnchor).isActive = true
         container.trailingAnchor.constraint(equalTo: window.trailingAnchor).isActive = true
-        container.topAnchor.constraint(equalTo: menuButton.bottomAnchor, constant: 22).isActive = true
-        container.heightAnchor.constraint(equalToConstant: 500).isActive = true
+        container.topAnchor.constraint(equalTo: menuButton.bottomAnchor, constant: 11).isActive = true
+        container.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height).isActive = true
         container.addGestureRecognizer(containerPanRecognizer)
         menuButton.addGestureRecognizer(panRecognizer)
     }
@@ -86,10 +88,10 @@ class SideMenu: UIViewController {
         let transitionAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 1, animations: {
             switch state {
             case .open:
-                self.bottomConstraint.constant = 300
+                self.bottomConstraint.constant = self.menuHeight
                 self.overlayView.alpha = 0.5
             case .closed:
-                self.bottomConstraint.constant = 22
+                self.bottomConstraint.constant = self.menuButtonSpacing.bottom
                 self.overlayView.alpha = 0
             }
             UIApplication.shared.delegate?.window??.layoutIfNeeded()
@@ -111,9 +113,9 @@ class SideMenu: UIViewController {
             // manually reset the constraint positions
             switch self.currentState {
             case .open:
-                self.bottomConstraint.constant = 300
+                self.bottomConstraint.constant = self.menuHeight
             case .closed:
-                self.bottomConstraint.constant = 22
+                self.bottomConstraint.constant = self.menuButtonSpacing.bottom
             }
 
             // remove all running animators
@@ -132,7 +134,7 @@ class SideMenu: UIViewController {
         case .began:
 
             // start the animations
-            animateTransitionIfNeeded(to: currentState.opposite, duration: 1)
+            animateTransitionIfNeeded(to: currentState.opposite, duration: 0.7)
 
             // pause all animations, since the next event may be a pan changed
             runningAnimators.forEach { $0.pauseAnimation() }
@@ -144,10 +146,12 @@ class SideMenu: UIViewController {
 
             // variable setup
             let translation = recognizer.translation(in: overlayView)
-            var fraction = -translation.y / 300
+            var fraction = -translation.y / menuHeight
 
             // adjust the fraction for the current state and reversed state
-            if currentState == .open { fraction *= -1 }
+            if currentState == .open {
+                fraction *= -1
+            }
             if runningAnimators.first?.isReversed == true {
                 fraction *= -1
             }

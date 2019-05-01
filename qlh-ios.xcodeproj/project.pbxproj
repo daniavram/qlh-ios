@@ -37,6 +37,7 @@
 		8E95254C226314200076E0B2 /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E95254B226314200076E0B2 /* ListCell.swift */; };
 		8E95254E226339190076E0B2 /* UIVIewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E95254D226339190076E0B2 /* UIVIewExtension.swift */; };
 		8E95255022633A930076E0B2 /* UIEdgeInsetsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E95254F22633A930076E0B2 /* UIEdgeInsetsExtension.swift */; };
+		8EEC400B2279A89A001E0481 /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEC400A2279A89A001E0481 /* MenuButton.swift */; };
 		8EEFCEC72270BA4E004105F3 /* CGPointExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEFCEC62270BA4E004105F3 /* CGPointExtension.swift */; };
 		8EEFCECA2271C612004105F3 /* Fetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEFCEC92271C612004105F3 /* Fetcher.swift */; };
 		8EEFCECC2271C61D004105F3 /* UIActivityIndicatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEFCECB2271C61D004105F3 /* UIActivityIndicatable.swift */; };
@@ -78,6 +79,7 @@
 		8E95254B226314200076E0B2 /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		8E95254D226339190076E0B2 /* UIVIewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIVIewExtension.swift; sourceTree = "<group>"; };
 		8E95254F22633A930076E0B2 /* UIEdgeInsetsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIEdgeInsetsExtension.swift; sourceTree = "<group>"; };
+		8EEC400A2279A89A001E0481 /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
 		8EEFCEC62270BA4E004105F3 /* CGPointExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPointExtension.swift; sourceTree = "<group>"; };
 		8EEFCEC92271C612004105F3 /* Fetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetcher.swift; sourceTree = "<group>"; };
 		8EEFCECB2271C61D004105F3 /* UIActivityIndicatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIActivityIndicatable.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				8E95254B226314200076E0B2 /* ListCell.swift */,
 				8E62A8C022765A410079C3D1 /* ListViewModel.swift */,
 				8E15622122788D7E00026A01 /* InstantPanGestureRecognizer.swift */,
+				8EEC400A2279A89A001E0481 /* MenuButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				8E52B5DE227223EF00DEFEDE /* DecodableExtension.swift in Sources */,
 				8E95254E226339190076E0B2 /* UIVIewExtension.swift in Sources */,
 				8EEFCECF2271C6FD004105F3 /* ListItemsProvider.swift in Sources */,
+				8EEC400B2279A89A001E0481 /* MenuButton.swift in Sources */,
 				8E95255022633A930076E0B2 /* UIEdgeInsetsExtension.swift in Sources */,
 				8E95254C226314200076E0B2 /* ListCell.swift in Sources */,
 				8E10A91422623D6600ACBBC9 /* Numbers.swift in Sources */,
