@@ -10,9 +10,11 @@ import UIKit
 
 class Application {
     static var spinner = Spinner()
+    static var menu = SideMenu()
     static func initialize() {
         spinner.initialize(size: .spinner,
                            stepDuration: 0.7,
                            colors: GradientColor.allForSpinner)
+        menu.initialize()
     }
 }

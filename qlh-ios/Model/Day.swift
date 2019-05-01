@@ -29,6 +29,18 @@ enum Day: String, Comparable {
         }
     }
 
+    var displayValue: String {
+        switch self {
+        case .monday: return "Luni"
+        case .tuesday: return "Marti"
+        case .wednesday: return "Miercuri"
+        case .thursday: return "Joi"
+        case .friday: return "Vineri"
+        case .saturday: return "Sambata"
+        case .sunday: return "Duminica"
+        }
+    }
+
     static func < (lhs: Day, rhs: Day) -> Bool {
         return lhs.order < rhs.order
     }

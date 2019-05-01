@@ -94,5 +94,7 @@ extension ListController: ListItemsDelegate {
     func didFetch(_ elements: ListItemCollection) {
         itemsCollection = elements
         tableView.reloadData()
+        title = selectedDay.displayValue
+        Application.menu.show()
     }
 }
