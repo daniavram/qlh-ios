@@ -22,9 +22,10 @@ class MenuButton: UIView {
 
         // make cut
 
-        let arrowSize: CGSize = .init(width: 4, height: 12)
-        let arrowPadding: UIEdgeInsets = .pairs(vertical: 5, horizontal: 6)
-        let startingY = 0.33 * size.height
+        let arrowSize: CGSize = .init(width: max(1, floor(0.1 * size.height)),
+                                      height: max(10, floor(0.33 * size.height)))
+        let arrowPadding: CGFloat = 5
+        let startingY = 0.3 * size.height
 
         let path = CGMutablePath()
 //        path.addArc(center: CGPoint(x: 0.5 * size.width, y: 0.5 * size.height),
@@ -34,13 +35,13 @@ class MenuButton: UIView {
 //                    clockwise: false)
         path.addRect(CGRect(origin: .zero, size: size))
         path.move(to: .init(x: 0.5 * size.width, y: startingY))
-        path.addLine(to: CGPoint(x: arrowPadding.left, y: startingY + arrowSize.height))
-        path.addLine(to: CGPoint(x: arrowPadding.left, y: startingY + arrowSize.height + arrowSize.width))
+        path.addLine(to: CGPoint(x: arrowPadding, y: startingY + arrowSize.height))
+        path.addLine(to: CGPoint(x: arrowPadding + 0.5 * arrowSize.width, y: startingY + arrowSize.height + arrowSize.width))
         // add arc here
-        path.addLine(to: CGPoint(x: 0.5 * size.width, y: startingY + arrowSize.width))
-        path.addLine(to: CGPoint(x: size.width - arrowPadding.right, y: startingY + arrowSize.height + arrowSize.width))
+        path.addLine(to: CGPoint(x: 0.5 * size.width, y: startingY + arrowSize.width * sqrt(2)))
+        path.addLine(to: CGPoint(x: size.width - arrowPadding - 0.5 * arrowSize.width, y: startingY + arrowSize.height + arrowSize.width))
         // add arc here
-        path.addLine(to: CGPoint(x: size.width - arrowPadding.right, y: startingY + arrowSize.height))
+        path.addLine(to: CGPoint(x: size.width - arrowPadding, y: startingY + arrowSize.height))
         let maskLayer = CAShapeLayer()
         maskLayer.backgroundColor = UIColor.black.cgColor
         maskLayer.path = path
@@ -48,10 +49,10 @@ class MenuButton: UIView {
         layer.mask = maskLayer
         clipsToBounds = true
 
-        let vibrancyEffect = UIBlurEffect(style: .prominent)
-        let vibrancyView = UIVisualEffectView(effect: vibrancyEffect)
-        vibrancyView.translatesAutoresizingMaskIntoConstraints = false
-        _ = addSubview(vibrancyView, withPadding: .zero)
+        let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .extraLight))
+        blurView.translatesAutoresizingMaskIntoConstraints = false
+        blurView.alpha = 0.875
+        _ = addSubview(blurView, withPadding: .zero)
 
         // add shadow
 

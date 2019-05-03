@@ -16,7 +16,7 @@ class SideMenu: UIViewController {
     /// Spacing between button and screen; top and right don't matter
     private let menuButtonSpacing = UIEdgeInsets(top: 0, left: 11, bottom: 11, right: 0)
     /// Menu button size
-    private let menuButtonSize = CGSize(width: 44, height: 44)
+    private let menuButtonSize = CGSize.square(of: 44)
     /// Height of the menu container
     private let menuHeight: CGFloat = 400
     /// Menu button bottom constraint
@@ -122,11 +122,18 @@ class SideMenu: UIViewController {
             self.runningAnimators.removeAll()
         }
 
+        let rotationAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 1) {
+            let angle = self.currentState == .open ? 0 : CGFloat.pi
+            self.menuButton.transform = CGAffineTransform(rotationAngle: angle)
+        }
+
         // start all animators
         transitionAnimator.startAnimation()
+        rotationAnimator.startAnimation()
 
         // keep track of all running animators
         runningAnimators.append(transitionAnimator)
+        runningAnimators.append(rotationAnimator)
     }
 
     @objc private func popupViewPanned(recognizer: UIPanGestureRecognizer) {
