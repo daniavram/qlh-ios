@@ -16,7 +16,7 @@ class SideMenu: UIViewController {
     /// Spacing between button and screen; top and right don't matter
     private let menuButtonSpacing = UIEdgeInsets(top: 0, left: 11, bottom: 11, right: 0)
     /// Menu button size
-    private let menuButtonSize = CGSize.square(of: 44)
+    private let menuButtonSize = CGSize.square(of: 50)
     /// Height of the menu container
     private let menuHeight: CGFloat = 400
     /// Menu button bottom constraint
@@ -49,8 +49,7 @@ class SideMenu: UIViewController {
         overlayView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         overlayView.alpha = 0
         _ = window.addSubview(overlayView, withPadding: .zero)
-        menuButton = MenuButton(size: menuButtonSize)
-        window.addSubview(menuButton)
+        menuButton = MenuButton(size: menuButtonSize, superview: window)
         menuButton.leadingAnchor.constraint(equalTo: window.leadingAnchor, constant: 11).isActive = true
         bottomConstraint = window.bottomAnchor.constraint(equalTo: menuButton.bottomAnchor, constant: 11)
         bottomConstraint.isActive = true
@@ -69,6 +68,7 @@ class SideMenu: UIViewController {
 
     func show() {
         UIApplication.shared.delegate?.window??.bringSubviewToFront(overlayView)
+        UIApplication.shared.delegate?.window??.bringSubviewToFront(menuButton.shadowView)
         UIApplication.shared.delegate?.window??.bringSubviewToFront(menuButton)
         UIApplication.shared.delegate?.window??.bringSubviewToFront(container)
     }

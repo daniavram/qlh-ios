@@ -39,6 +39,15 @@ extension UIView {
         sizes.makeAll(active: true)
         return sizes
     }
+
+    func constraintCenters(to view: UIView) -> Centers {
+        let centers = Centers()
+        centers.x = view.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0)
+        centers.y = view.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0)
+        centers.setConstants(to: .zero)
+        centers.makeAll(active: true)
+        return centers
+    }
 }
 
 extension UIView {
