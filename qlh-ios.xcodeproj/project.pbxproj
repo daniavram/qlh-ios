@@ -37,6 +37,10 @@
 		8E95254C226314200076E0B2 /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E95254B226314200076E0B2 /* ListCell.swift */; };
 		8E95254E226339190076E0B2 /* UIVIewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E95254D226339190076E0B2 /* UIVIewExtension.swift */; };
 		8E95255022633A930076E0B2 /* UIEdgeInsetsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E95254F22633A930076E0B2 /* UIEdgeInsetsExtension.swift */; };
+		8EAAC031227EBD6B00BA85AB /* DaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAAC030227EBD6B00BA85AB /* DaysView.swift */; };
+		8EAAC033227F5D5F00BA85AB /* CenteredCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAAC032227F5D5F00BA85AB /* CenteredCollectionViewFlowLayout.swift */; };
+		8EAAC035227F61F000BA85AB /* DayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAAC034227F61F000BA85AB /* DayCell.swift */; };
+		8EAAC037227F63DE00BA85AB /* NameIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAAC036227F63DE00BA85AB /* NameIdentifiable.swift */; };
 		8EEC400B2279A89A001E0481 /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEC400A2279A89A001E0481 /* MenuButton.swift */; };
 		8EEFCEC72270BA4E004105F3 /* CGPointExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEFCEC62270BA4E004105F3 /* CGPointExtension.swift */; };
 		8EEFCECA2271C612004105F3 /* Fetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEFCEC92271C612004105F3 /* Fetcher.swift */; };
@@ -79,6 +83,10 @@
 		8E95254B226314200076E0B2 /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		8E95254D226339190076E0B2 /* UIVIewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIVIewExtension.swift; sourceTree = "<group>"; };
 		8E95254F22633A930076E0B2 /* UIEdgeInsetsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIEdgeInsetsExtension.swift; sourceTree = "<group>"; };
+		8EAAC030227EBD6B00BA85AB /* DaysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysView.swift; sourceTree = "<group>"; };
+		8EAAC032227F5D5F00BA85AB /* CenteredCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenteredCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		8EAAC034227F61F000BA85AB /* DayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCell.swift; sourceTree = "<group>"; };
+		8EAAC036227F63DE00BA85AB /* NameIdentifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameIdentifiable.swift; sourceTree = "<group>"; };
 		8EEC400A2279A89A001E0481 /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
 		8EEFCEC62270BA4E004105F3 /* CGPointExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPointExtension.swift; sourceTree = "<group>"; };
 		8EEFCEC92271C612004105F3 /* Fetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetcher.swift; sourceTree = "<group>"; };
@@ -150,6 +158,9 @@
 				8E62A8C022765A410079C3D1 /* ListViewModel.swift */,
 				8E15622122788D7E00026A01 /* InstantPanGestureRecognizer.swift */,
 				8EEC400A2279A89A001E0481 /* MenuButton.swift */,
+				8EAAC032227F5D5F00BA85AB /* CenteredCollectionViewFlowLayout.swift */,
+				8EAAC034227F61F000BA85AB /* DayCell.swift */,
+				8EAAC030227EBD6B00BA85AB /* DaysView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -226,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				8EEFCEC92271C612004105F3 /* Fetcher.swift */,
+				8EAAC036227F63DE00BA85AB /* NameIdentifiable.swift */,
 				8EEFCECB2271C61D004105F3 /* UIActivityIndicatable.swift */,
 			);
 			path = Protocols;
@@ -319,13 +331,17 @@
 				8EEFCED12271C716004105F3 /* ListItemsDelegate.swift in Sources */,
 				8E10A9162262720900ACBBC9 /* Application.swift in Sources */,
 				8E52B5E122722DE500DEFEDE /* TheInternet.swift in Sources */,
+				8EAAC037227F63DE00BA85AB /* NameIdentifiable.swift in Sources */,
 				8E62A8C122765A410079C3D1 /* ListViewModel.swift in Sources */,
 				8E95254A22630EAC0076E0B2 /* ListController.swift in Sources */,
+				8EAAC031227EBD6B00BA85AB /* DaysView.swift in Sources */,
 				8E15621C2278478A00026A01 /* ListItemCollection.swift in Sources */,
 				8E10A8EF22622BA900ACBBC9 /* LaunchController.swift in Sources */,
 				8E10A910226235D000ACBBC9 /* Colors.swift in Sources */,
 				8E52B5E3227257C700DEFEDE /* IntExtension.swift in Sources */,
+				8EAAC035227F61F000BA85AB /* DayCell.swift in Sources */,
 				8EEFCECC2271C61D004105F3 /* UIActivityIndicatable.swift in Sources */,
+				8EAAC033227F5D5F00BA85AB /* CenteredCollectionViewFlowLayout.swift in Sources */,
 				8E15621E22786B7200026A01 /* Day.swift in Sources */,
 				8E10A91222623C4500ACBBC9 /* CGSizeExtension.swift in Sources */,
 				8E738B65226B8548008EF3D6 /* GradientPoint.swift in Sources */,

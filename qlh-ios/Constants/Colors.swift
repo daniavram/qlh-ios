@@ -47,5 +47,5 @@ extension GradientColor {
     static var rainbow5 = GradientColor(primary: .rainbow5, secondary: .rainbow6)
     static var rainbow6 = GradientColor(primary: .rainbow6, secondary: .rainbow1)
     static var allForSpinner = CircularList<GradientColor>(elements: [.rainbow1, .rainbow2, .rainbow3, .rainbow4, .rainbow5, .rainbow6])
-    static var allForList = CircularList<GradientColor>(elements: [.list1, .list2])
+    static var allForList = CircularList<GradientColor>(elements: [.rainbow5, .rainbow6])
 }

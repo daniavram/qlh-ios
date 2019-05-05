@@ -19,10 +19,11 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     private var tableView: UITableView!
     private var provider: ListItemsProvider<ListController>!
+    private var daysView: DaysView!
 
     private(set) var itemsCollection = ListItemCollection()
 
-    var selectedDay: Day = .tuesday
+    var selectedDay: Day = .monday
 
     convenience init(color: UIColor) {
         self.init()
@@ -30,6 +31,7 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.scrollsToTop = true
         tableView.register(ListCell.self, forCellReuseIdentifier: ListCell.identifier)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.sectionHeaderHeight = .leastNonzeroMagnitude
@@ -44,6 +46,9 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
         initializeGradient()
         provider = ListItemsProvider(delegate: self)
         provider.fetch()
+        daysView = DaysView(size: .init(width: 300, height: 40))
+        daysView.delegate = self
+        navigationItem.titleView = daysView
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -94,7 +99,13 @@ extension ListController: ListItemsDelegate {
     func didFetch(_ elements: ListItemCollection) {
         itemsCollection = elements
         tableView.reloadData()
-        title = selectedDay.displayValue
         Application.menu.show()
+    }
+}
+
+extension ListController: DaysViewDelegate {
+    func didSelect(day: Day) {
+        selectedDay = day
+        tableView.reloadData()
     }
 }

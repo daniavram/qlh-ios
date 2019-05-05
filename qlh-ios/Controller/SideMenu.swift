@@ -84,6 +84,8 @@ class SideMenu: UIViewController {
         // ensure that the animators array is empty (which implies new animations need to be created)
         guard runningAnimators.isEmpty else { return }
 
+        show()
+
         // an animator for the transition
         let transitionAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 1, animations: {
             switch state {
@@ -116,6 +118,7 @@ class SideMenu: UIViewController {
                 self.bottomConstraint.constant = self.menuHeight
             case .closed:
                 self.bottomConstraint.constant = self.menuButtonSpacing.bottom
+                UIApplication.shared.delegate?.window??.sendSubviewToBack(self.overlayView)
             }
 
             // remove all running animators

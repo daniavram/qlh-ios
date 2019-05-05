@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum Day: String, Comparable {
+enum Day: String, Comparable, CaseIterable {
     case monday
     case tuesday
     case wednesday
@@ -43,5 +43,10 @@ enum Day: String, Comparable {
 
     static func < (lhs: Day, rhs: Day) -> Bool {
         return lhs.order < rhs.order
+    }
+
+    static func withIndex(_ index: Int) -> Day? {
+        let day = Day.allCases.first(where: { $0.order == index + 1 })
+        return day
     }
 }
