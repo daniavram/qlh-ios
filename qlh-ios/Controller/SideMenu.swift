@@ -128,6 +128,7 @@ class SideMenu: UIViewController {
         let rotationAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 1) {
             let angle = self.currentState == .open ? 0 : CGFloat.pi
             self.menuButton.transform = CGAffineTransform(rotationAngle: angle)
+            self.menuButton.shadowView.transform = CGAffineTransform(rotationAngle: angle)
         }
 
         // start all animators

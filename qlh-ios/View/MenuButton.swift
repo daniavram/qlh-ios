@@ -20,49 +20,27 @@ class MenuButton: UIView {
         layer.cornerRadius = 0.5 * size.height
         _ = constraint(to: size)
         superview.addSubview(self)
-
-        // make cut
-
-        let arrowSize: CGSize = .init(width: max(1, floor(0.1 * size.height)),
-                                      height: max(10, floor(0.33 * size.height)))
-        let arrowPadding: CGFloat = max(5, floor(0.1 * size.height))
-        let startingY = 0.275 * size.height
-
-        let path = CGMutablePath()
-        path.addRect(CGRect(origin: .zero, size: size))
-        path.move(to: .init(x: 0.5 * size.width, y: startingY))
-        path.addLine(to: CGPoint(x: arrowPadding, y: startingY + arrowSize.height))
-        path.addLine(to: CGPoint(x: arrowPadding + 0.5 * arrowSize.width, y: startingY + arrowSize.height + arrowSize.width))
-        // add arc here
-        path.addLine(to: CGPoint(x: 0.5 * size.width, y: startingY + arrowSize.width * sqrt(2)))
-        path.addLine(to: CGPoint(x: size.width - arrowPadding - 0.5 * arrowSize.width, y: startingY + arrowSize.height + arrowSize.width))
-        // add arc here
-        path.addLine(to: CGPoint(x: size.width - arrowPadding, y: startingY + arrowSize.height))
+        let arrowSize: CGSize = .init(width: 4,
+                                      height: max(10, floor(0.25 * size.height)))
         let maskLayer = CAShapeLayer()
         maskLayer.backgroundColor = UIColor.black.cgColor
-        maskLayer.path = path
+        maskLayer.path = .arrow(ofSize: arrowSize, in: size, withRoundedCorners: false)
         maskLayer.fillRule = .evenOdd
         layer.mask = maskLayer
         clipsToBounds = true
 
         // add shadow
 
-        let shadowRadius: CGFloat = 8
-        let shadowPath = CGMutablePath()
-        shadowPath.addRoundedRect(in: .init(origin: .zero, size: size), cornerWidth: 0.5 * size.width, cornerHeight: 0.5 * size.height)
-        shadowPath.move(to: .init(x: 0.5 * size.width, y: startingY - shadowRadius))
-        shadowPath.addLine(to: CGPoint(x: max(0, arrowPadding - shadowRadius), y: startingY + arrowSize.height - shadowRadius))
-        shadowPath.addLine(to: CGPoint(x: arrowPadding + 0.5 * arrowSize.width + shadowRadius, y: startingY + arrowSize.height + arrowSize.width + shadowRadius))
-        shadowPath.addLine(to: CGPoint(x: 0.5 * size.width, y: startingY + arrowSize.width * sqrt(2) + shadowRadius))
-        shadowPath.addLine(to: CGPoint(x: size.width - arrowPadding - 0.5 * arrowSize.width - shadowRadius, y: startingY + arrowSize.height + arrowSize.width + shadowRadius))
-        shadowPath.addLine(to: CGPoint(x: size.width - arrowPadding + shadowRadius, y: startingY + arrowSize.height - shadowRadius))
+        let shadowRadius: CGFloat = 6
+        let shadowSize: CGSize = .init(width: size.width + shadowRadius, height: size.height + shadowRadius)
+        let shadowCutawaySize: CGSize = .init(width: arrowSize.width + 2 * shadowRadius, height: arrowSize.height + 2 * shadowRadius)
         shadowView = UIView(frame: .zero)
         shadowView.translatesAutoresizingMaskIntoConstraints = false
         shadowView.layer.shadowColor = UIColor.gray.cgColor
         shadowView.layer.shadowOffset = .zero
         shadowView.layer.shadowRadius = shadowRadius
         shadowView.layer.shadowOpacity = 1
-        shadowView.layer.shadowPath = shadowPath
+        shadowView.layer.shadowPath = .arrow(ofSize: shadowCutawaySize, in: shadowSize, withRoundedCorners: true)
         superview.addSubview(shadowView)
         _ = shadowView.constraint(to: size)
         _ = shadowView.constraintCenters(to: self)
