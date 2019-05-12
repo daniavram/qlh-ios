@@ -12,30 +12,45 @@ extension CGSize {
     static var spinner: CGSize = .square(of: 100)
 }
 
-extension CGPath {
-    static func arrow(ofSize arrowSize: CGSize, in parentSize: CGSize, withRoundedCorners: Bool = false) -> CGPath {
-        // numbers
-        let arrowPadding: CGFloat = max(8, floor(0.1 * parentSize.height))
-        let arrowTotalHeight = arrowSize.height + arrowSize.width * sqrt(2)
-        let startingY = 0.5 * (parentSize.height - arrowTotalHeight)
-        let arrowLowY = parentSize.height - 0.5 * (parentSize.height - arrowTotalHeight)
-        // construct path
+extension MenuButton {
+    static func arrowPath(ofSize arrowSize: CGSize, in parentSize: CGSize) -> CGPath {
         let path = CGMutablePath()
-        if withRoundedCorners {
-            path.addRoundedRect(in: .init(origin: .zero, size: parentSize),
-                                cornerWidth: 0.5 * parentSize.width,
-                                cornerHeight: 0.5 * parentSize.height)
-        } else {
-            path.addRect(CGRect(origin: .zero, size: parentSize))
-        }
-        path.move(to: .init(x: 0.5 * parentSize.width, y: startingY))
-        path.addLine(to: CGPoint(x: arrowPadding, y: startingY + arrowSize.height))
-        path.addLine(to: CGPoint(x: arrowPadding, y: arrowLowY))
-        // TODO: Could add arc here
-        path.addLine(to: CGPoint(x: 0.5 * parentSize.width, y: startingY + arrowSize.width * sqrt(2)))
-        path.addLine(to: CGPoint(x: parentSize.width - arrowPadding, y: arrowLowY))
-        // TODO: Could add arc here
-        path.addLine(to: CGPoint(x: parentSize.width - arrowPadding, y: startingY + arrowSize.height))
+
+        path.addRect(CGRect(origin: .init(x: -0.5 * parentSize.width,
+                                          y: -0.5 * parentSize.height),
+                            size: .init(width: 2 * parentSize.width,
+                                        height: 2 * parentSize.height)))
+
+        let start = CGPoint(x: 0.5 * (parentSize.height - arrowSize.height),
+                            y: 0.5 * (parentSize.height - arrowSize.height))
+
+        path.move(to: start)
+        path.addLine(to: .init(x: start.x,
+                               y: start.y + arrowSize.height))
+        path.addLine(to: .init(x: start.x + arrowSize.width,
+                               y: start.y + arrowSize.height))
+        path.addLine(to: .init(x: start.x + arrowSize.width,
+                               y: start.y + arrowSize.width))
+        path.addLine(to: .init(x: start.x + arrowSize.height,
+                               y: start.y + arrowSize.width))
+        path.addLine(to: .init(x: start.x + arrowSize.height,
+                               y: start.y))
+        return path
+    }
+
+    static func arrowShadow(ofHeight height: CGFloat, in parentSize: CGSize) -> CGPath {
+        let path = CGMutablePath()
+
+        path.addRoundedRect(in: .init(origin: .zero, size: parentSize),
+                            cornerWidth: 0.5 * parentSize.width,
+                            cornerHeight: 0.5 * parentSize.height)
+
+        path.move(to: .init(x: 0.5 * parentSize.width,
+                            y: 0.5 * (parentSize.height - height)))
+        path.addLine(to: CGPoint(x: 0.5 * parentSize.width - height,
+                                 y: 0.5 * (parentSize.height + height)))
+        path.addLine(to: CGPoint(x: 0.5 * parentSize.width + height,
+                                 y: 0.5 * (parentSize.height + height)))
         return path
     }
 }

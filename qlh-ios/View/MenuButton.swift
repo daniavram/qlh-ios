@@ -18,29 +18,30 @@ class MenuButton: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .white
         layer.cornerRadius = 0.5 * size.height
+        clipsToBounds = true
         _ = constraint(to: size)
         superview.addSubview(self)
-        let arrowSize: CGSize = .init(width: 4,
-                                      height: max(10, floor(0.25 * size.height)))
+        let arrowSize: CGSize = .init(width: 3,
+                                      height: 15)
         let maskLayer = CAShapeLayer()
         maskLayer.backgroundColor = UIColor.black.cgColor
-        maskLayer.path = .arrow(ofSize: arrowSize, in: size, withRoundedCorners: false)
+        maskLayer.path = MenuButton.arrowPath(ofSize: arrowSize, in: size)
         maskLayer.fillRule = .evenOdd
         layer.mask = maskLayer
-        clipsToBounds = true
+        maskLayer.position = .init(x: 0.5 * size.width, y: -0.5 * arrowSize.height)
+        let tr = CATransform3DRotate(maskLayer.transform, .pi * 0.25, 0, 0, 1)
+        maskLayer.transform = tr
 
         // add shadow
 
         let shadowRadius: CGFloat = 6
-        let shadowSize: CGSize = .init(width: size.width + shadowRadius, height: size.height + shadowRadius)
-        let shadowCutawaySize: CGSize = .init(width: arrowSize.width + 2 * shadowRadius, height: arrowSize.height + 2 * shadowRadius)
         shadowView = UIView(frame: .zero)
         shadowView.translatesAutoresizingMaskIntoConstraints = false
         shadowView.layer.shadowColor = UIColor.gray.cgColor
         shadowView.layer.shadowOffset = .zero
         shadowView.layer.shadowRadius = shadowRadius
         shadowView.layer.shadowOpacity = 1
-        shadowView.layer.shadowPath = .arrow(ofSize: shadowCutawaySize, in: shadowSize, withRoundedCorners: true)
+        shadowView.layer.shadowPath = MenuButton.arrowShadow(ofHeight: arrowSize.height + shadowRadius, in: size)
         superview.addSubview(shadowView)
         _ = shadowView.constraint(to: size)
         _ = shadowView.constraintCenters(to: self)
